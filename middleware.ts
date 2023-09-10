@@ -1,7 +1,10 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { createI18nMiddleware } from 'next-international/middleware'
 import { NextResponse } from 'next/server'
 
+
 import type { NextRequest } from 'next/server'
+const I18nMiddleware = createI18nMiddleware(['en', 'es'] as const, 'es')
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
@@ -13,5 +16,9 @@ export async function middleware(req: NextRequest) {
   // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
   await supabase.auth.getSession()
 
-  return res
+  return I18nMiddleware(req)
+}
+
+export const config = {
+  matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)'],
 }

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Assistant } from '@/app/assistant/components/Assitant'
+import { Assistant } from '@/app/[locale]/assistant/components/Assitant'
 
 export default function Index() {
   return (

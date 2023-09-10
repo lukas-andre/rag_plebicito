@@ -1,9 +1,11 @@
 'use client'
 
-import { Button } from '@/app/components/ui/button'
+import { Button } from '@/app/[locale]/components/ui/button'
+import { useI18n } from '@/locales/client'
 import { useState } from 'react'
 
 export default function AssistantComponent() {
+  const t = useI18n()
   const [message, setMessage] = useState('')
   const [chatLog, setChatLog] = useState<string[]>([])
 
@@ -29,11 +31,11 @@ export default function AssistantComponent() {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message..."
+            placeholder={t('type_message')}
             className="flex-1 p-2 rounded border"
           />
           <Button onClick={handleSendMessage} variant="default">
-            Send
+            {t('send')}
           </Button>
         </div>
       </div>

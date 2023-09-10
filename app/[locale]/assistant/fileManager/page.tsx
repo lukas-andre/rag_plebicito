@@ -1,6 +1,6 @@
 'use client'
 
-import { FileUploader } from '@/app/assistant/fileManager/components/ui/file-uploader'
+import { FileUploader } from '@/app/[locale]/assistant/fileManager/components/ui/file-uploader'
 import { useState } from 'react'
 
 export default function FileManagerComponent() {
