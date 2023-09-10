@@ -1,0 +1,7 @@
+{
+  "extends": ["prettier", "next", "next/core-web-vitals"],
+  "plugins": ["prettier", "@next/next/recommended"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
