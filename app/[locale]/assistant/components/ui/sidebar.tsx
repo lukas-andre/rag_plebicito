@@ -1,6 +1,6 @@
-import { VariantProps, cva } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import React from 'react'
+import { VariantProps, cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 const sidebarVariants = cva(
   'flex flex-col h-screen w-screen transition-colors duration-300',
@@ -19,8 +19,8 @@ const sidebarVariants = cva(
       position: 'left',
       theme: 'light',
     },
-  },
-)
+  }
+);
 
 export interface SidebarProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -34,9 +34,9 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
         ref={ref}
         {...props}
       />
-    )
-  },
-)
-Sidebar.displayName = 'Sidebar'
+    );
+  }
+);
+Sidebar.displayName = 'Sidebar';
 
-export { Sidebar, sidebarVariants }
+export { Sidebar, sidebarVariants };

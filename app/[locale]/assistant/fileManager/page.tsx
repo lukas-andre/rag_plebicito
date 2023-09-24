@@ -1,32 +1,55 @@
-'use client'
-
-import { FileUploader } from '@/app/[locale]/assistant/fileManager/components/ui/file-uploader'
-import { useState } from 'react'
+import { FileUploader } from '@/app/[locale]/assistant/fileManager/components/ui/file-uploader';
+import { useUser } from '@/app/hooks/useUser';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React from 'react';
 
 export default function FileManagerComponent() {
-  const [files, setFiles] = useState<File[]>([])
+  const [file, setFile] = React.useState<File | null>(null);
+  const supabase = createClientComponentClient();
+  const { user, loading } = useUser(supabase); // Us
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFiles = Array.from(event.target.files || [])
-    setFiles(uploadedFiles)
-  }
+    const uploadedFile = event.target.files ? event.target.files[0] : null;
+    if (uploadedFile) {
+      setFile(uploadedFile);
+      uploadFile(uploadedFile);
+    }
+  };
+
+  const uploadFile = async (uploadedFile: File) => {
+    const formData = new FormData();
+    formData.append('file', uploadedFile);
+    formData.append('userId', user?.id || '');
+
+    try {
+      const response = await fetch('/api/files/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload file');
+      }
+
+      const data = await response.json();
+      console.log('File uploaded successfully:', data);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="p-4">
-        <label className="block text-sm font-medium mb-2">Upload Files:</label>
-        <FileUploader multiple onChange={handleFileUpload} />
+    <div className='flex h-full flex-col'>
+      <div className='p-4'>
+        <label className='mb-2 block text-sm font-medium'>Upload File:</label>
+        <FileUploader onChange={handleFileUpload} />
       </div>
-      <div className="flex-1 overflow-y-auto p-4">
-        <h2 className="text-xl mb-4">Uploaded Files:</h2>
-        <ul>
-          {files.map((file, index) => (
-            <li key={index} className="mb-2 p-2 rounded bg-gray-200">
-              {file.name}
-            </li>
-          ))}
-        </ul>
+      <div className='flex-1 overflow-y-auto p-4'>
+        <h2 className='mb-4 text-xl'>Uploaded File:</h2>
+        {file && (
+          <div className='mb-2 rounded bg-gray-200 p-2'>{file.name}</div>
+        )}
       </div>
     </div>
-  )
+  );
 }
