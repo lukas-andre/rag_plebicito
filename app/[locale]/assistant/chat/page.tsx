@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/app/[locale]/components/ui/button';
 import { useUser } from '@/app/hooks/useUser';
 import { useI18n } from '@/locales/client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';

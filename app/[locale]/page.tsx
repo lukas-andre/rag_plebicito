@@ -4,6 +4,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
+import { getCurrentLocale } from '@/locales/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,16 +40,19 @@ const examples = [
 ];
 
 export default async function Index() {
+  const locale = getCurrentLocale()
+
   const supabase = createServerComponentClient({ cookies });
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  console.log(user);
+  console.log({user});
 
   if (user) {
-    redirect('/assistant');
+    console.log(`redirecting to ${locale}/assistant`);
+    redirect(`/assistant`);
   }
 
   return (

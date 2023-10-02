@@ -3,19 +3,25 @@ import { createI18nMiddleware } from 'next-international/middleware';
 import { NextResponse } from 'next/server';
 
 import type { NextRequest } from 'next/server';
-const I18nMiddleware = createI18nMiddleware(['en', 'es'] as const, 'es');
+
+
+
+const I18nMiddleware = createI18nMiddleware({
+  locales: ['en-US', 'es-CL'],
+  defaultLocale: 'es-CL',
+  urlMappingStrategy: 'redirect',
+});
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  // Create a Supabase client configured to use cookies
-  const supabase = createMiddlewareClient({ req, res });
 
-  // Refresh session if expired - required for Server Components
-  // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
+  const i18nResult = I18nMiddleware(req);
+
+  const supabase = createMiddlewareClient({ req, res });
   await supabase.auth.getSession();
 
-  return I18nMiddleware(req);
+  return i18nResult;
 }
 
 export const config = {

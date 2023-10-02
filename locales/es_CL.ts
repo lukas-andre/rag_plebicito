@@ -57,4 +57,7 @@ export default {
       'Si un estudiante confiesa tener problemas en casa, ¿cuál es el procedimiento a seguir?',
   },
   suggested_questions: 'Preguntas sugeridas',
+  sign_up: 'Registrarse',
+  sign_in: 'Iniciar sesión',
+  sign_out: 'Cerrar sesión'
 } as const;

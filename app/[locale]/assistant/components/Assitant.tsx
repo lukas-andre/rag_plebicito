@@ -7,7 +7,6 @@ import { Sidebar } from '@/app/[locale]/assistant/components/ui/sidebar';
 import SidebarButton from '@/app/[locale]/assistant/components/ui/sidebarButton';
 import SidebarHeader from '@/app/[locale]/assistant/components/ui/sidebarHeader';
 import FileManagerComponent from '@/app/[locale]/assistant/fileManager/page';
-import { Button } from '@/app/components/ui/button';
 import { useChangeLocale, useCurrentLocale, useI18n } from '@/locales/client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
@@ -16,6 +15,7 @@ import { FaAddressBook, FaFile } from 'react-icons/fa';
 import { LanguageModal } from './LocaleModal'; // Importa el componente del modal
 import { useUser } from '@/app/hooks/useUser';
 import { Page as Pages } from '@/app/[locale]/assistant/types/pages.type';
+import { Button } from '@/app/[locale]/components/ui/button';
 
 export function Assistant() {
   const t = useI18n();
@@ -39,6 +39,16 @@ export function Assistant() {
       onClick: () => setActivePage('files'),
       page: 'files' as Pages,
     },
+    {
+      label: t('sign_out'),
+      icon: <FaFile />,
+      onClick: async () =>  {
+        const { error } =  await supabase.auth.signOut();
+        console.log('error', error)
+        window.location.href = '/';
+      },
+      page: 'sign_out' as Pages,
+    }
   ];
 
   return (

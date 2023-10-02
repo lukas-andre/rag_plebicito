@@ -56,4 +56,7 @@ export default {
       'If a student confesses to having problems at home, what is the procedure to follow?',
   },
   suggested_questions: 'Suggested questions',
+  sign_up: 'Sign up',
+  sign_in: 'Sign in ',
+  sign_out: 'Sign out',
 } as const;

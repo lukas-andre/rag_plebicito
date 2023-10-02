@@ -1,3 +1,4 @@
+import { I18nProviderClient } from '../../locales/client';
 import './globals.css';
 
 export const metadata = {
@@ -14,7 +15,9 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <main className='flex min-h-screen flex-col items-center bg-background'>
-          {children}
+          <I18nProviderClient>
+            {children}
+          </I18nProviderClient>
         </main>
       </body>
     </html>

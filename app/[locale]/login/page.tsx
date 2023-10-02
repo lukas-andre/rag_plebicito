@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import Messages from './messages';
 
+const API_BASE_URL = process.env.API_BASE_URL;
+
 export default function Login() {
+
   return (
     <div className='flex w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md'>
       <Link
@@ -27,7 +30,7 @@ export default function Login() {
 
       <form
         className='flex w-full flex-1 flex-col justify-center gap-2 text-foreground'
-        action='/auth/sign-in'
+        action="/api/auth/sign-in"
         method='post'
       >
         <label className='text-md' htmlFor='email'>
@@ -53,7 +56,7 @@ export default function Login() {
           Sign In
         </button>
         <button
-          formAction='/auth/sign-up'
+          formAction="/api/auth/sign-up"
           className='mb-2 rounded border border-gray-700 px-4 py-2 text-white'
         >
           Sign Up

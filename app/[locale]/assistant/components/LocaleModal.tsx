@@ -21,7 +21,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
         <h2 className='mb-4 text-lg font-semibold'>{t('select_language')}</h2>
         <button
           onClick={() => {
-            changeLocale('en');
+            changeLocale('en-US');
             onClose();
           }}
           className='block w-full rounded-md px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100'
@@ -30,7 +30,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
         </button>
         <button
           onClick={() => {
-            changeLocale('es');
+            changeLocale('es-CL');
             onClose();
           }}
           className='mt-2 block w-full rounded-md px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100'
