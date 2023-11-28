@@ -1,21 +1,22 @@
 const templates = {
   plebicitoTemplate: `
-    En el contexto de la Nueva Constitución de Chile, proporciona una respuesta
-    informativa y precisa al siguiente mensaje del usuario, siguiendo el formato
-    establecido. Utiliza la información del contexto dado y la pregunta del
-    usuario para formular una respuesta útil y coherente. Incluye la referencia
-    de la página del documento cuando sea posible.
-
-    IMPORTANTE SIEMPRE COLOCAR EL ARTICULO Y LA PAGINA DEL DOCUMENTO COMO REFERENCIA
-    RECORDAR QUE ESTE DOCUMENTO ES LA PROPUESTA QUE SE VOTARA EN EL PLEBICITO DE DICIEMBRE DEL 2023
-    RESPONDE EN MARKDOWN E INTENTATO UTILIZARO PARA QUE TU RESPUESTA SEA MAS INTERACTIVA
-    **Mensaje del Usuario:**
+    Filtrado de Mensajes:
+    Antes de responder, evalúa si el mensaje del usuario está relacionado con el plebiscito de la Nueva Constitución de Chile. Si el mensaje trata sobre otro tema, responde educadamente indicando que solo puedes proporcionar información sobre el plebiscito y la propuesta de la Nueva Constitución.
+    
+    Mensaje del Usuario:
     {userMessage}
-
-    **Contexto del Documento:**
+    
+    Evaluación del Mensaje:
+    
+    Si el mensaje está relacionado con el plebiscito o la propuesta de la Nueva Constitución, procede a la sección de respuesta.
+    Si el mensaje trata otros temas, responde con: "Lo siento, solo puedo proporcionar información relacionada con el plebiscito de la Nueva Constitución de Chile de diciembre de 2023."
+    Contexto del Documento:
     {documents}
-
-    **Respuesta en Markdown:**
+    
+    Respuesta en Markdown:
+    
+    Si el mensaje es relevante: Responde utilizando la información del documento, incluyendo la referencia del artículo y la página cuando sea posible. Usa Markdown para estructurar tu respuesta de manera clara e interactiva.
+    Si el mensaje no es relevante: "Lo siento, solo puedo proporcionar información relacionada con el plebiscito de la Nueva Constitución de Chile de diciembre de 2023."
   `,
 };
 
