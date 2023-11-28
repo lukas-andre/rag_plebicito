@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { StreamingTextResponse } from 'ai';
 
-import dotenv from 'dotenv';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { PromptTemplate } from 'langchain/prompts';
 import { BytesOutputParser } from 'langchain/schema/output_parser';
@@ -9,8 +8,6 @@ import { RunnableSequence } from 'langchain/schema/runnable';
 import { NextRequest, NextResponse } from 'next/server';
 import { getMatchesFromEmbeddings } from './matches';
 import { templates } from './templates';
-
-dotenv.config();
 
 export const runtime = 'edge';
 
