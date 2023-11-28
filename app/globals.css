@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 240 20% 98%; 
+    --btn-background: 150 50% 50%;
+    --btn-background-hover: 150 50% 30%;
+    --btn-text: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 210 50% 50%; 
+    --secondary: 210 50% 30%; 
+    --card-background: 240 10% 95%; 
+    --card-background-hover: 240 10% 90%; 
+    --text-typography: 0 0% 0%; 
+    --text-typography-secondary: 0 0% 60%; 
+    --link: 210 50% 50%; 
+    --link-hover: 210 50% 30%;
+    --success: 120 50% 50%; 
+    --error: 0 50% 50%; 
+    --warning: 60 50% 50%; 
+    --info: 210 50% 70%;
+    --border-color: 0 0% 80%;
+    --border-radius: 4px; 
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --scrollbar: 0 0% 70%; 
+    --placeholder: 0 0% 60%;
+    --transition-duration: 0.3s;
+    --transition-timing: ease-in-out;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: #4CAF50; /* Verde oscuro */
+      --color-secondary: #8BC34A; /* Verde claro */
+    
+      --color-background: #121212; /* Gris casi negro */
+      --color-card-background: #1E1E1E; /* Gris oscuro */
+      --color-hover: #2E2E2E; /* Gris un poco más claro para el hover */
+    
+      --color-typography: #E0E0E0; /* Gris claro */
+      --color-typography-secondary: #B0B0B0; /* Gris medio */
+      --color-link: #81C784; /* Verde medio */
+    
+      --color-buttons: #333333; /* Gris oscuro para botones */
+      --color-buttons-text: #E0E0E0; /* Texto gris claro para botones */
+      --color-buttons-hover: #444444; /* Gris un poco más claro para el hover de botones */
+    
+      --color-success: #81C784; /* Verde medio para éxito */
+      --color-error: #E57373; /* Rojo claro para errores */
+      --color-warning: #FFD54F; /* Amarillo para advertencias */
+      --color-info: #64B5F6; /* Azul claro para información */
+    
+      --border-color: #333333; /* Color de borde gris oscuro */
+      --border-radius: 4px; /* Radio de borde estándar */
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    
+      --color-scrollbar: #B0B0B0; /* Gris medio para la barra de desplazamiento */
+      --color-placeholder: #757575; /* Gris para marcadores de posición */
+    
+      --transition-duration: 0.3s; /* Duración estándar de la transición */
+      --transition-timing: ease-in-out; /* Función de tiempo estándar */
+    }
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-foreground/20;
+  }
+}
+
+.animate-in {
+  animation: animateIn 0.3s ease 0.15s both;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

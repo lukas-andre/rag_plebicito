@@ -12,6 +12,11 @@ import { templates } from './templates';
 
 dotenv.config();
 
+function estimateTokens(text: string): number {
+  const averageCharactersPerToken = 4;
+  return Math.ceil(text.length / averageCharactersPerToken);
+}
+
 export async function POST(req: NextRequest) {
   try {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
@@ -50,19 +55,19 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    console.log('Getting matches from embeddings');
 
-    const matches = await getMatchesFromEmbeddings(prompt, supabaseClient, 2);
+
+    const matches = await getMatchesFromEmbeddings(prompt, supabaseClient, 3);
 
     const chat = new ChatOpenAI({
       openAIApiKey: openAiKey,
-      modelName: 'gpt-3.5-turbo',
+      modelName: 'gpt-3.5-turbo-16k',
       streaming: true,
       verbose: true,
     });
 
     const promptTemplate = new PromptTemplate({
-      template: templates.schoolProtocolTemplate,
+      template: templates.plebicitoTemplate,
       inputVariables: ['userMessage', 'documents'],
     });
 
@@ -70,9 +75,12 @@ export async function POST(req: NextRequest) {
 
     const chain = RunnableSequence.from([promptTemplate, chat, outputParser]);
 
+    const documents = matches.map((match) => match.pageContent).join('\n')
+    console.log({ tokenCount: estimateTokens(documents + prompt) });
+
     const stream = await chain.stream({
       userMessage: prompt,
-      documents: matches.map((match) => match.pageContent).join('\n'),
+      documents,
     });
 
     return new StreamingTextResponse(stream);
