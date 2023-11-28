@@ -12,6 +12,8 @@ import { templates } from './templates';
 
 dotenv.config();
 
+export const runtime = 'edge';
+
 function estimateTokens(text: string): number {
   const averageCharactersPerToken = 4;
   return Math.ceil(text.length / averageCharactersPerToken);
