@@ -7,7 +7,7 @@ interface MainContainerProps {
 
 export const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
     return (
-      <main className="flex flex-col items-center justify-center p-8">
+      <main className="flex flex-col items-center justify-center p-8 mb-16">
         {children}
       </main>
     );
